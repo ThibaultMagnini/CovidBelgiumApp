@@ -10,27 +10,22 @@ import 'package:intl/intl.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 10);
-  final urlimage =
-      "https://www.london.gov.uk/sites/default/files/styles/gla_2_1_medium/public/covid-19-992x496px-fa.png?itok=PESyXRa1";
-  final title = "Corona Pred";
+  final title = "CoronaPredBE";
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Material(
-        color: Color.fromRGBO(0, 141, 72, 1),
+        color: Color.fromARGB(255, 28, 76, 178),
         child: ListView(
           padding: padding,
           children: <Widget>[
             buildHeader(
-              urlImage: urlimage,
               title: title,
               date: DateTime.now(),
-              onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => MyHomePage(
-                        title: 'Covid-19 Belgium',
-                      ))),
+              onClicked: () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Home())),
             ),
             //const SizedBox(height: 10),
             buildMenuItem(
@@ -103,7 +98,6 @@ class NavigationDrawerWidget extends StatelessWidget {
   }
 
   Widget buildHeader({
-    String urlImage,
     String title,
     DateTime date,
     VoidCallback onClicked,
@@ -111,15 +105,17 @@ class NavigationDrawerWidget extends StatelessWidget {
       InkWell(
         onTap: onClicked,
         child: Container(
-          padding: padding.add(EdgeInsets.symmetric(vertical: 40)),
+          padding: padding.add(EdgeInsets.symmetric(
+            vertical: 40,
+          )),
           child: Row(
             children: [
               CircleAvatar(
                 radius: 30,
-                backgroundImage: NetworkImage(urlimage),
+                backgroundImage: AssetImage("assets/images/wear_mask.png"),
               ),
               SizedBox(
-                width: 20,
+                width: 15,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
