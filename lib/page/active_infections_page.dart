@@ -91,7 +91,7 @@ class ActiveInfectionsPage extends StatelessWidget {
       new charts.Series<DataPoint, DateTime>(
         id: 'DataPoints',
         domainFn: (DataPoint dataPoint, _) => dataPoint.time,
-        measureFn: (DataPoint dataPoint, _) => dataPoint.sales,
+        measureFn: (DataPoint dataPoint, _) => dataPoint.newCases,
         data: data,
       )
     ];
@@ -100,7 +100,7 @@ class ActiveInfectionsPage extends StatelessWidget {
 
 class DataPoint {
   final DateTime time;
-  final int sales;
+  final int newCases;
 
-  DataPoint(this.time, this.sales);
+  DataPoint(this.time, this.newCases);
 }

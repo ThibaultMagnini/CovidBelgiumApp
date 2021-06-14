@@ -30,6 +30,8 @@ dependencies:
   intl: ^0.16.0
   charts_flutter: ^0.10.0
   flutter_svg: ^0.20.0-nullsafety.3
+  http: ^0.13.3
+  fl_animated_linechart: ^1.1.4
 
 dev_dependencies:
   flutter_test:

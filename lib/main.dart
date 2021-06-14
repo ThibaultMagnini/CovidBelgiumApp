@@ -1,10 +1,16 @@
+import 'dart:convert';
+
 import 'package:covid_app/constant.dart';
 import 'package:covid_app/widgets/line_chart.dart';
 import 'package:covid_app/widgets/navigation_drawer_widget.dart';
+import 'package:fl_animated_linechart/chart/area_line_chart.dart';
+import 'package:fl_animated_linechart/common/pair.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:fl_animated_linechart/fl_animated_linechart.dart';
+//import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(MyApp());
@@ -34,9 +40,10 @@ class Home extends StatefulWidget {
 
 class HomePage extends State<Home> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
-  String selectedCat = "Daily Infections";
+  String selectedCat = "Active Infections";
+  int chartIndex = 1;
 
-  Chart chart = new Chart(_createSampleDataInfections());
+  LineChart chart;
   DateFormat formatter = DateFormat('dd-MM-yyyy');
 
   @override
@@ -145,9 +152,9 @@ class HomePage extends State<Home> {
                           value: selectedCat,
                           icon: SvgPicture.asset("assets/icons/dropdown.svg"),
                           items: [
-                            'Daily Infections',
+                            'Active Infections',
                             'Daily Recoveries',
-                            'Daily Hospitalisations',
+                            'Hospitalisations',
                             'Daily Deaths'
                           ].map((String value) {
                             return DropdownMenuItem<String>(
@@ -157,17 +164,14 @@ class HomePage extends State<Home> {
                           }).toList(),
                           onChanged: (value) {
                             setState(() {
-                              if (value == 'Daily Infections') {
-                                chart =
-                                    new Chart(_createSampleDataInfections());
+                              if (value == 'Active Infections') {
+                                chartIndex = 1;
                               } else if (value == 'Daily Recoveries') {
-                                chart =
-                                    new Chart(_createSampleDataRecoveries());
-                              } else if (value == 'Daily Hospitalisations') {
-                                chart = new Chart(
-                                    _createSampleDataHospitalisations());
+                                chartIndex = 2;
+                              } else if (value == 'Hospitalisations') {
+                                chartIndex = 3;
                               } else if (value == 'Daily Deaths') {
-                                chart = new Chart(_createSampleDataDeaths());
+                                chartIndex = 4;
                               }
                               selectedCat = value;
                             });
@@ -181,8 +185,8 @@ class HomePage extends State<Home> {
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 20),
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                height: 320,
+                padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+                height: 310,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -198,7 +202,30 @@ class HomePage extends State<Home> {
                     )
                   ],
                 ),
-                child: chart,
+                child: FutureBuilder<Map<DateTime, double>>(
+                  future: _fetchCovidData(chartIndex),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      chart = new LineChart.fromDateTimeMaps([
+                        snapshot.data
+                      ], [
+                        Colors.blue
+                      ], [
+                        if (chartIndex == 1)
+                          "Cases"
+                        else if (chartIndex == 2)
+                          "Recoveries"
+                        else if (chartIndex == 3)
+                          "in ICU"
+                        else
+                          "Deaths"
+                      ], tapTextFontWeight: FontWeight.w400);
+                      return new AnimatedLineChart(chart);
+                    } else {
+                      return CircularProgressIndicator();
+                    }
+                  },
+                ),
               ),
               SizedBox(
                 height: 20,
@@ -207,115 +234,73 @@ class HomePage extends State<Home> {
           ),
         ),
       );
-
-  static List<charts.Series<DataPointLine, int>> _createSampleDataInfections() {
-    final data = [
-      new DataPointLine(0, 15),
-      new DataPointLine(1, 5),
-      new DataPointLine(2, 25),
-      new DataPointLine(3, 100),
-      new DataPointLine(4, 75),
-    ];
-
-    return [
-      new charts.Series<DataPointLine, int>(
-        id: 'DataPoints',
-        domainFn: (DataPointLine dataPoint, _) => dataPoint.time,
-        measureFn: (DataPointLine dataPoint, _) => dataPoint.sales,
-        data: data,
-      )
-    ];
-  }
-
-  static List<charts.Series<DataPointLine, int>> _createSampleDataRecoveries() {
-    final data = [
-      new DataPointLine(0, 15),
-      new DataPointLine(1, 100),
-      new DataPointLine(2, 23),
-      new DataPointLine(3, 10),
-      new DataPointLine(4, 120),
-    ];
-
-    return [
-      new charts.Series<DataPointLine, int>(
-        id: 'DataPoints',
-        domainFn: (DataPointLine dataPoint, _) => dataPoint.time,
-        measureFn: (DataPointLine dataPoint, _) => dataPoint.sales,
-        data: data,
-      )
-    ];
-  }
-
-  static List<charts.Series<DataPointLine, int>>
-      _createSampleDataHospitalisations() {
-    final data = [
-      new DataPointLine(0, 25),
-      new DataPointLine(1, 122),
-      new DataPointLine(2, 65),
-      new DataPointLine(3, 1),
-      new DataPointLine(4, 3),
-      new DataPointLine(5, 25),
-      new DataPointLine(6, 122),
-      new DataPointLine(7, 65),
-      new DataPointLine(8, 1),
-      new DataPointLine(9, 3),
-      new DataPointLine(10, 25),
-      new DataPointLine(11, 122),
-      new DataPointLine(12, 65),
-      new DataPointLine(13, 1),
-      new DataPointLine(14, 3),
-      new DataPointLine(15, 25),
-      new DataPointLine(16, 122),
-      new DataPointLine(17, 65),
-      new DataPointLine(18, 1),
-      new DataPointLine(19, 3),
-      new DataPointLine(20, 25),
-      new DataPointLine(21, 122),
-      new DataPointLine(22, 65),
-      new DataPointLine(23, 1),
-      new DataPointLine(24, 3),
-      new DataPointLine(25, 25),
-      new DataPointLine(26, 122),
-      new DataPointLine(27, 65),
-      new DataPointLine(28, 1),
-      new DataPointLine(29, 3),
-    ];
-
-    return [
-      new charts.Series<DataPointLine, int>(
-        id: 'DataPoints',
-        domainFn: (DataPointLine dataPoint, _) => dataPoint.time,
-        measureFn: (DataPointLine dataPoint, _) => dataPoint.sales,
-        data: data,
-      )
-    ];
-  }
-
-  static List<charts.Series<DataPointLine, int>> _createSampleDataDeaths() {
-    final data = [
-      new DataPointLine(0, 10),
-      new DataPointLine(1, 20),
-      new DataPointLine(2, 12),
-      new DataPointLine(3, 5),
-      new DataPointLine(4, 9),
-    ];
-
-    return [
-      new charts.Series<DataPointLine, int>(
-        id: 'DataPoints',
-        domainFn: (DataPointLine dataPoint, _) => dataPoint.time,
-        measureFn: (DataPointLine dataPoint, _) => dataPoint.sales,
-        data: data,
-      )
-    ];
-  }
 }
 
-class DataPointLine {
-  final int time;
-  final int sales;
-
-  DataPointLine(this.time, this.sales);
+Future<Map<DateTime, double>> _fetchCovidData(int chartIndex) async {
+  Map<DateTime, double> data = {};
+  var response;
+  if (chartIndex == 1) {
+    response = await http.get(Uri.parse("http://10.0.2.2:8000/cases/belgium"));
+    if (response.statusCode == 200) {
+      final responseJson = jsonDecode(response.body);
+      for (int i = responseJson.length - 3; i > responseJson.length - 33; i--) {
+        data[DateTime.parse(responseJson[i]["DATE"])] =
+            double.parse(responseJson[i]["ACTIVE_CASES"]);
+      }
+    } else {
+      throw Exception("Failed to load data.");
+    }
+    return data;
+  } else if (chartIndex == 3) {
+    response = await http
+        .get(Uri.parse("http://10.0.2.2:8000/hospitalisations/belgium"));
+    if (response.statusCode == 200) {
+      final responseJson = jsonDecode(response.body);
+      for (int i = responseJson.length - 3; i > responseJson.length - 33; i--) {
+        data[DateTime.parse(responseJson[i]["DATE"])] =
+            double.parse(responseJson[i]["TOTAL_IN_ICU"]);
+      }
+    } else {
+      throw Exception("Failed to load data.");
+    }
+    return data;
+  } else if (chartIndex == 2) {
+    response = await http.get(Uri.parse("http://10.0.2.2:8000/cases/belgium"));
+    if (response.statusCode == 200) {
+      final responseJson = jsonDecode(response.body);
+      for (int i = responseJson.length - 3; i > responseJson.length - 33; i--) {
+        data[DateTime.parse(responseJson[i]["DATE"])] =
+            double.parse(responseJson[i]["NEW_RECOVERED"]);
+      }
+    } else {
+      throw Exception("Failed to load data.");
+    }
+    return data;
+  } else if (chartIndex == 4) {
+    response = await http.get(Uri.parse("http://10.0.2.2:8000/cases/belgium"));
+    if (response.statusCode == 200) {
+      final responseJson = jsonDecode(response.body);
+      for (int i = responseJson.length - 3; i > responseJson.length - 33; i--) {
+        data[DateTime.parse(responseJson[i]["DATE"])] =
+            double.parse(responseJson[i]["NEW_DEATHS"]);
+      }
+    } else {
+      throw Exception("Failed to load data.");
+    }
+    return data;
+  } else {
+    response = await http.get(Uri.parse("http://10.0.2.2:8000/cases/belgium"));
+    if (response.statusCode == 200) {
+      final responseJson = jsonDecode(response.body);
+      for (int i = responseJson.length - 3; i > responseJson.length - 33; i--) {
+        data[DateTime.parse(responseJson[i]["DATE"])] =
+            double.parse(responseJson[i]["ACTIVE_CASES"]);
+      }
+    } else {
+      throw Exception("Failed to load data.");
+    }
+    return data;
+  }
 }
 
 class MyClipper extends CustomClipper<Path> {

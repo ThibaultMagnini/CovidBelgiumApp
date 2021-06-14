@@ -1,4 +1,5 @@
 import 'package:covid_app/main.dart';
+import 'package:covid_app/page/about_page.dart';
 import 'package:covid_app/page/active_infections_page.dart';
 import 'package:covid_app/page/prediction_range_page.dart';
 import 'package:covid_app/page/province_clustering_page.dart';
@@ -176,6 +177,12 @@ class NavigationDrawerWidget extends StatelessWidget {
           ),
         );
         break;
+      case 5:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => AboutPage(),
+          ),
+        );
     }
   }
 }
