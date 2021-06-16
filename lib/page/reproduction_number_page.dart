@@ -118,7 +118,6 @@ class ReproductionNumberPage extends StatelessWidget {
         .get(Uri.parse("http://139.162.248.210:8000/predictions/Belgium"));
     if (response.statusCode == 200) {
       final responseJson = jsonDecode(response.body);
-      DateFormat formatter1 = new DateFormat('yyyy-MM-dd');
       DateFormat formatter2 = new DateFormat('MM-dd-yyyy');
 
       for (int i = 0; i < responseJson.length; i++) {

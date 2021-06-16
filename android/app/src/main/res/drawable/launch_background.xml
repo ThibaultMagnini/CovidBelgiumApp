@@ -9,4 +9,10 @@
             android:gravity="center"
             android:src="@drawable/wear_mask" />
     </item> 
+    <!-- <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/text" />
+    </item>  -->
+    
 </layer-list>
