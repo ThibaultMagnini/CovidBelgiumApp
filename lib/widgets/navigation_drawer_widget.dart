@@ -52,7 +52,7 @@ class NavigationDrawerWidget extends StatelessWidget {
               onClicked: () => selectedItem(context, 5),
             ),
             buildMenuItem(
-              text: 'Contributers',
+              text: 'Contributors',
               icon: Icons.people,
               onClicked: () => selectedItem(context, 6),
             ),

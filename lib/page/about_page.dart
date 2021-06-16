@@ -9,7 +9,7 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
         drawer: NavigationDrawerWidget(),
         appBar: AppBar(
-          title: Text("About us"),
+          title: Text("About"),
           centerTitle: true,
           backgroundColor: Color.fromARGB(255, 28, 76, 178),
         ),
