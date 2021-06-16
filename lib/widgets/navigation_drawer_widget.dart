@@ -1,7 +1,7 @@
 import 'package:covid_app/main.dart';
 import 'package:covid_app/page/about_page.dart';
 import 'package:covid_app/page/active_infections_page.dart';
-import 'package:covid_app/page/prediction_range_page.dart';
+import 'package:covid_app/page/contributers_page.dart';
 import 'package:covid_app/page/province_clustering_page.dart';
 import 'package:covid_app/page/reproduction_number_page.dart';
 import 'package:covid_app/page/total_recoveries_page.dart';
@@ -28,7 +28,6 @@ class NavigationDrawerWidget extends StatelessWidget {
               onClicked: () => Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => Home())),
             ),
-            //const SizedBox(height: 10),
             buildMenuItem(
               text: 'Active Infections',
               icon: Icons.bolt,
@@ -43,19 +42,6 @@ class NavigationDrawerWidget extends StatelessWidget {
               text: 'Reproduction Number',
               icon: Icons.exposure_plus_1,
               onClicked: () => selectedItem(context, 2),
-            ),
-            buildMenuItem(
-              text: 'Prediction Range',
-              icon: Icons.straighten,
-              onClicked: () => selectedItem(context, 3),
-            ),
-            const SizedBox(height: 15),
-            Divider(color: Colors.white70),
-            const SizedBox(height: 15),
-            buildMenuItem(
-              text: 'Province Clustering',
-              icon: Icons.group_work,
-              onClicked: () => selectedItem(context, 4),
             ),
             const SizedBox(height: 15),
             Divider(color: Colors.white70),
@@ -143,11 +129,8 @@ class NavigationDrawerWidget extends StatelessWidget {
     Navigator.of(context).pop();
     switch (index) {
       case 0:
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => ActiveInfectionsPage(),
-          ),
-        );
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => Active()));
         break;
       case 1:
         Navigator.of(context).push(
@@ -163,13 +146,6 @@ class NavigationDrawerWidget extends StatelessWidget {
           ),
         );
         break;
-      case 3:
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => PredictionRangePage(),
-          ),
-        );
-        break;
       case 4:
         Navigator.of(context).push(
           MaterialPageRoute(
@@ -181,6 +157,13 @@ class NavigationDrawerWidget extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => AboutPage(),
+          ),
+        );
+        break;
+      case 6:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => ContributerPage(),
           ),
         );
     }

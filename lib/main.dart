@@ -125,7 +125,7 @@ class HomePage extends State<Home> {
                 ),
               ),
               Text(
-                "Active Numbers on",
+                "Latest Numbers",
                 style: kTitleTextstyle.copyWith(color: Colors.black),
               ),
               Text(
@@ -276,10 +276,18 @@ class HomePage extends State<Home> {
                       ], tapTextFontWeight: FontWeight.w400);
                       return new AnimatedLineChart(chart);
                     } else {
-                      return SizedBox(
-                        child: CircularProgressIndicator(),
-                        height: 20,
-                        width: 20,
+                      return AlertDialog(
+                        content: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            SizedBox(
+                              width: 100,
+                              height: 100,
+                              child: CircularProgressIndicator(),
+                            ),
+                          ],
+                        ),
                       );
                     }
                   },
