@@ -1,9 +1,5 @@
-# covid_app
+# CovidPredBE app
+An App to display Covid-19 forecasts using a Neural Network
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
 
 
