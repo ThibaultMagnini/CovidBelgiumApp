@@ -2,6 +2,7 @@ import 'package:covid_app/main.dart';
 import 'package:covid_app/page/about_page.dart';
 import 'package:covid_app/page/active_infections_page.dart';
 import 'package:covid_app/page/contributers_page.dart';
+import 'package:covid_app/page/mobility_difference_page.dart';
 import 'package:covid_app/page/province_clustering_page.dart';
 import 'package:covid_app/page/reproduction_number_page.dart';
 import 'package:covid_app/page/total_recoveries_page.dart';
@@ -29,6 +30,12 @@ class NavigationDrawerWidget extends StatelessWidget {
                   .push(MaterialPageRoute(builder: (context) => Home())),
             ),
             buildMenuItem(
+              text: 'Home',
+              icon: Icons.home,
+              onClicked: () => selectedItem(context, 8),
+            ),
+            Divider(color: Colors.white70),
+            buildMenuItem(
               text: 'Active Infections',
               icon: Icons.bolt,
               onClicked: () => selectedItem(context, 0),
@@ -43,6 +50,11 @@ class NavigationDrawerWidget extends StatelessWidget {
               icon: Icons.exposure_plus_1,
               onClicked: () => selectedItem(context, 2),
             ),
+            buildMenuItem(
+              text: 'Mobility difference',
+              icon: Icons.nordic_walking,
+              onClicked: () => selectedItem(context, 9),
+            ),
             const SizedBox(height: 15),
             Divider(color: Colors.white70),
             const SizedBox(height: 15),
@@ -55,11 +67,6 @@ class NavigationDrawerWidget extends StatelessWidget {
               text: 'Contributors',
               icon: Icons.people,
               onClicked: () => selectedItem(context, 6),
-            ),
-            buildMenuItem(
-              text: 'Official Paper',
-              icon: Icons.description,
-              onClicked: () => selectedItem(context, 7),
             ),
           ],
         ),
@@ -164,6 +171,20 @@ class NavigationDrawerWidget extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => ContributerPage(),
+          ),
+        );
+        break;
+      case 8:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => Home(),
+          ),
+        );
+        break;
+      case 9:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => Mobility(),
           ),
         );
     }

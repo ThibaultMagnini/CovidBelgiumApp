@@ -35,7 +35,7 @@ class ActiveInfectionsPage extends State<Active> {
               ),
               Container(
                   margin: EdgeInsets.symmetric(horizontal: 20),
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
                   height: 320,
                   width: double.infinity,
                   decoration: BoxDecoration(
