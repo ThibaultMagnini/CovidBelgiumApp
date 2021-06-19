@@ -3,7 +3,6 @@ import 'package:covid_app/page/about_page.dart';
 import 'package:covid_app/page/active_infections_page.dart';
 import 'package:covid_app/page/contributers_page.dart';
 import 'package:covid_app/page/mobility_difference_page.dart';
-import 'package:covid_app/page/province_clustering_page.dart';
 import 'package:covid_app/page/reproduction_number_page.dart';
 import 'package:covid_app/page/total_recoveries_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -153,13 +152,7 @@ class NavigationDrawerWidget extends StatelessWidget {
           ),
         );
         break;
-      case 4:
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => ProvinceClusteringPage(),
-          ),
-        );
-        break;
+
       case 5:
         Navigator.of(context).push(
           MaterialPageRoute(
