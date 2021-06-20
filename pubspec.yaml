@@ -34,6 +34,7 @@ dependencies:
   fl_animated_linechart: ^1.1.4
   url_launcher: ^6.0.6
   fl_chart: ^0.36.2
+  syncfusion_flutter_maps: ^19.1.69-beta
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +54,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - geojson.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

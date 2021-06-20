@@ -1,6 +1,7 @@
 import 'package:covid_app/main.dart';
 import 'package:covid_app/page/about_page.dart';
 import 'package:covid_app/page/active_infections_page.dart';
+import 'package:covid_app/page/clustering_page.dart';
 import 'package:covid_app/page/contributers_page.dart';
 import 'package:covid_app/page/mobility_difference_page.dart';
 import 'package:covid_app/page/reproduction_number_page.dart';
@@ -53,6 +54,11 @@ class NavigationDrawerWidget extends StatelessWidget {
               text: 'Mobility difference',
               icon: Icons.nordic_walking,
               onClicked: () => selectedItem(context, 9),
+            ),
+            buildMenuItem(
+              text: 'Province Clustering',
+              icon: Icons.nordic_walking,
+              onClicked: () => selectedItem(context, 3),
             ),
             const SizedBox(height: 15),
             Divider(color: Colors.white70),
@@ -152,7 +158,13 @@ class NavigationDrawerWidget extends StatelessWidget {
           ),
         );
         break;
-
+      case 3:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => ClusteringPage(),
+          ),
+        );
+        break;
       case 5:
         Navigator.of(context).push(
           MaterialPageRoute(

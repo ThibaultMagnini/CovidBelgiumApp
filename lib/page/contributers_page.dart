@@ -133,7 +133,7 @@ class ContributerPage extends StatelessWidget {
                         SizedBox(
                           height: 20,
                         ),
-                        Text("Cássio M. Oishi"),
+                        Text("Prof. Cássio M. Oishi"),
                         Text(
                           "UNESP",
                           style: kTitleTextstyle,
@@ -166,7 +166,8 @@ class ContributerPage extends StatelessWidget {
                       children: [
                         CircleAvatar(
                           radius: 50,
-                          backgroundImage: AssetImage("assets/images/pfp.png"),
+                          backgroundImage:
+                              AssetImage("assets/images/fabio.png"),
                         ),
                         SizedBox(
                           height: 20,
@@ -180,6 +181,49 @@ class ContributerPage extends StatelessWidget {
                     ),
                   ),
                   onTap: () {},
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                InkWell(
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    width: 180,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0, 10),
+                          blurRadius: 20,
+                          color: kActiveShadowColor,
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 50,
+                          backgroundImage: AssetImage("assets/images/wc.png"),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text("Prof. Wallace Casaca"),
+                        Text(
+                          "UNESP",
+                          style: kTitleTextstyle,
+                        )
+                      ],
+                    ),
+                  ),
+                  onTap: () {
+                    _launchURL(
+                        "https://www.linkedin.com/in/cassio-oishi-334b3676/");
+                  },
                 ),
               ],
             )

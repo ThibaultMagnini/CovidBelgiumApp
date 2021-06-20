@@ -23,7 +23,7 @@ class ActiveInfectionsPage extends State<Active> {
   Widget build(BuildContext context) => Scaffold(
         drawer: NavigationDrawerWidget(),
         appBar: AppBar(
-          title: Text('Active Infections'),
+          title: Text('Active Infections Belgium'),
           centerTitle: true,
           backgroundColor: Color.fromARGB(255, 28, 76, 178),
         ),
@@ -84,13 +84,13 @@ class ActiveInfectionsPage extends State<Active> {
                 height: 20,
               ),
               Text(
-                "INFO",
+                "Info",
                 style: kTitleTextstyle.copyWith(color: Colors.black),
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 20),
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                height: 310,
+                height: 400,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -107,7 +107,7 @@ class ActiveInfectionsPage extends State<Active> {
                   ],
                 ),
                 child: Text(
-                  "This forecast was obtained using a Neural Network.\n\nThe training of the model happens daily based on the most recent Covid-19 numbers in Belgium.\nIn the chart above you can observe the predictions made by the model.\n\nFor more details on the model please refer to our paper.",
+                  "The forcast is made for a period of 14 days.\nAs can be seen the first 30 days on the graph are used to train the model. The following 14 days are the models prediction for the amount of infections.\n\nThis forecast was obtained using a Neural Network.\n\nThe training of the model happens daily based on the most recent Covid-19 numbers in Belgium.\n\n",
                   style: kSubTextStyle.copyWith(color: Colors.black),
                 ),
               ),

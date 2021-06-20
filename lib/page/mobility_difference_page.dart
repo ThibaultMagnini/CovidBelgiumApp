@@ -6,17 +6,19 @@ import 'package:fl_chart/fl_chart.dart' as bar;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'mobility_detail_page.dart';
+
 class Mobility extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => MobilityDifferencePage();
 }
 
 class MobilityDifferencePage extends State<Mobility> {
-  double retail;
-  double grocery;
-  double park;
-  double transit;
-  double workplace;
+  double retail = 0.0;
+  double grocery = 0.0;
+  double park = 0.0;
+  double transit = 0.0;
+  double workplace = 0.0;
 
   MobilityDifferencePage() {
     _fetchNumber("RETAIL").then((val) => setState(() {
@@ -48,6 +50,39 @@ class MobilityDifferencePage extends State<Mobility> {
       body: Container(
         child: Column(
           children: <Widget>[
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: <Widget>[
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                            text: "Mobility data \n", style: kTitleTextstyle),
+                        TextSpan(
+                          text: "What does this data mean?",
+                          style: TextStyle(color: kTextLightColor),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Spacer(),
+                  InkWell(
+                      child: Text(
+                        "See details",
+                        style: TextStyle(
+                            color: kPrimaryColor, fontWeight: FontWeight.w600),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => MobilityDetailPage()));
+                      }),
+                ],
+              ),
+            ),
             SizedBox(
               height: 10,
             ),
@@ -205,8 +240,8 @@ class MobilityDifferencePage extends State<Mobility> {
   Future<double> _fetchNumber(String type) async {
     var response;
     var result;
-    response =
-        await http.get(Uri.parse("http://10.0.2.2:8000/mobility/belgium"));
+    response = await http
+        .get(Uri.parse("http://139.162.248.210:8000/mobility/belgium"));
     if (response.statusCode == 200) {
       var responseJson = json.decode(response.body);
       result = double.parse(responseJson[responseJson.length - 1][type]);
@@ -219,8 +254,8 @@ class MobilityDifferencePage extends State<Mobility> {
   Future<List<double>> _fetchMobilityData() async {
     List<double> data = [];
     var response;
-    response =
-        await http.get(Uri.parse("http://10.0.2.2:8000/mobility/belgium"));
+    response = await http
+        .get(Uri.parse("http://139.162.248.210:8000/mobility/belgium"));
     if (response.statusCode == 200) {
       var responseJson = json.decode(response.body);
       data.add(double.parse(responseJson[responseJson.length - 1]["RETAIL"]));

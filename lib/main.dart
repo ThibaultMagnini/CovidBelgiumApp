@@ -103,14 +103,14 @@ class HomePage extends State<Home> {
                           children: <Widget>[
                             SvgPicture.asset(
                               'assets/icons/coronadr.svg',
-                              width: 230,
+                              width: 200,
                               fit: BoxFit.fitWidth,
                               alignment: Alignment.topCenter,
                             ),
                             Positioned(
-                              left: 160,
+                              left: 130,
                               child: Text(
-                                "CoronaPredBE \nCovid-19 forecast",
+                                "Covid19-stats.be\nStatistics & forecasts",
                                 style: kHeadingTextStyle.copyWith(
                                     color: Colors.white),
                               ),
