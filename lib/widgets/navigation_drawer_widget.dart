@@ -57,7 +57,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             ),
             buildMenuItem(
               text: 'Province Clustering',
-              icon: Icons.nordic_walking,
+              icon: Icons.map,
               onClicked: () => selectedItem(context, 3),
             ),
             const SizedBox(height: 15),

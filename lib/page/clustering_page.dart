@@ -5,6 +5,8 @@ import 'package:covid_app/widgets/navigation_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_maps/maps.dart';
 
+import 'mobility_detail_page.dart';
+
 class ClusteringPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => ClusteringPageState();
@@ -32,8 +34,40 @@ class ClusteringPageState extends State<ClusteringPage> {
           Padding(
             padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
             child: Text(
-              "Clustering results",
+              "Belgian Provinces",
               style: kTitleTextstyle,
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              children: <Widget>[
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(text: "Clustering \n", style: kTitleTextstyle),
+                      TextSpan(
+                        text: "How were clusters detirmined?",
+                        style: TextStyle(color: kTextLightColor),
+                      ),
+                    ],
+                  ),
+                ),
+                Spacer(),
+                InkWell(
+                    child: Text(
+                      "See details",
+                      style: TextStyle(
+                          color: kPrimaryColor, fontWeight: FontWeight.w600),
+                    ),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => MobilityDetailPage()));
+                    }),
+              ],
             ),
           ),
           FutureBuilder<List<MapModel>>(
