@@ -5,7 +5,7 @@ import 'package:covid_app/widgets/navigation_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_maps/maps.dart';
 
-import 'mobility_detail_page.dart';
+import 'clustering_detail_page.dart';
 
 class ClusteringPage extends StatefulWidget {
   @override
@@ -50,7 +50,7 @@ class ClusteringPageState extends State<ClusteringPage> {
                     children: [
                       TextSpan(text: "Clustering \n", style: kTitleTextstyle),
                       TextSpan(
-                        text: "How were clusters detirmined?",
+                        text: "How were clusters determined?",
                         style: TextStyle(color: kTextLightColor),
                       ),
                     ],
@@ -65,7 +65,7 @@ class ClusteringPageState extends State<ClusteringPage> {
                     ),
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => MobilityDetailPage()));
+                          builder: (context) => ClusteringDetailPage()));
                     }),
               ],
             ),
@@ -127,8 +127,8 @@ class ClusteringPageState extends State<ClusteringPage> {
       var jsonCluster = responseJson['PROVINCES'];
       for (int i = 0; i < jsonCluster.length; i++) {
         if (jsonCluster[i]["PROVINCE"] == "LiÃ¨ge") {
-          list.add(
-              new MapModel("Liège", double.parse(jsonCluster[i]["CLUSTER"])));
+          list.add(new MapModel(
+              "Liège", double.parse(jsonCluster[i]["CLUSTER"]) + 1));
         }
         list.add(new MapModel(jsonCluster[i]["PROVINCE"],
             double.parse(jsonCluster[i]["CLUSTER"]) + 1));

@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Covid-19 Belgium',
+      title: 'Pandemic Stats Belgium',
       theme: ThemeData(
         scaffoldBackgroundColor: kBackgroundColor,
         fontFamily: "Poppins",
@@ -110,7 +110,7 @@ class HomePage extends State<Home> {
                             Positioned(
                               left: 130,
                               child: Text(
-                                "Covid19-stats.be\nStatistics & forecasts",
+                                "Pandemic Stats BE\nStatistics & forecasts",
                                 style: kHeadingTextStyle.copyWith(
                                     color: Colors.white),
                               ),
@@ -128,7 +128,9 @@ class HomePage extends State<Home> {
                 style: kTitleTextstyle.copyWith(color: Colors.black),
               ),
               Text(
-                formatter.format(DateTime.now()).toString(),
+                formatter
+                    .format(DateTime.now().subtract(Duration(days: 1)))
+                    .toString(),
                 style: kTitleTextstyle.copyWith(color: Colors.black),
               ),
               SizedBox(

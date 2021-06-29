@@ -47,191 +47,198 @@ class MobilityDifferencePage extends State<Mobility> {
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 28, 76, 178),
       ),
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: <Widget>[
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                            text: "Mobility data \n", style: kTitleTextstyle),
-                        TextSpan(
-                          text: "What does this data mean?",
-                          style: TextStyle(color: kTextLightColor),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Spacer(),
-                  InkWell(
-                      child: Text(
-                        "See details",
-                        style: TextStyle(
-                            color: kPrimaryColor, fontWeight: FontWeight.w600),
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: <Widget>[
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                              text: "Mobility data \n", style: kTitleTextstyle),
+                          TextSpan(
+                            text: "What does this data mean?",
+                            style: TextStyle(color: kTextLightColor),
+                          ),
+                        ],
                       ),
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => MobilityDetailPage()));
-                      }),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.25,
-              child: Column(
-                children: <Widget>[
-                  Flexible(
-                    child: Row(
-                      children: <Widget>[
-                        _buildStatCard("Retail", "${retail}%", Colors.orange),
-                        _buildStatCard("Grocery", "${grocery}%", Colors.yellow),
-                      ],
                     ),
-                  ),
-                  Flexible(
-                    child: Row(
-                      children: <Widget>[
-                        _buildStatCard("Park", "${park}%", Colors.green),
-                        _buildStatCard(
-                            "Transit", "${transit}%", Colors.lightBlue),
-                        _buildStatCard(
-                            "Workplace", "${workplace}%", Colors.red),
-                      ],
+                    Spacer(),
+                    InkWell(
+                        child: Text(
+                          "See details",
+                          style: TextStyle(
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => MobilityDetailPage()));
+                        }),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height * 0.25,
+                child: Column(
+                  children: <Widget>[
+                    Flexible(
+                      child: Row(
+                        children: <Widget>[
+                          _buildStatCard("Retail", "${retail}%", Colors.orange),
+                          _buildStatCard(
+                              "Grocery", "${grocery}%", Colors.yellow),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                    Flexible(
+                      child: Row(
+                        children: <Widget>[
+                          _buildStatCard("Park", "${park}%", Colors.green),
+                          _buildStatCard(
+                              "Transit", "${transit}%", Colors.lightBlue),
+                          _buildStatCard(
+                              "Workplace", "${workplace}%", Colors.red),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.95,
-              height: 460,
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(0, 10),
-                    blurRadius: 30,
-                    color: kShadowColor,
-                  )
-                ],
+              SizedBox(
+                height: 20,
               ),
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    "Mobility Difference Yesterday",
-                    style: kTitleTextstyle,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    height: 350.0,
-                    width: MediaQuery.of(context).size.width * 0.85,
-                    child: FutureBuilder<List<double>>(
-                      future: _fetchMobilityData(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          return new bar.BarChart(
-                            bar.BarChartData(
-                              alignment: bar.BarChartAlignment.spaceAround,
-                              maxY: 130,
-                              barTouchData: bar.BarTouchData(enabled: true),
-                              titlesData: bar.FlTitlesData(
-                                show: true,
-                                bottomTitles: bar.SideTitles(
-                                  rotateAngle: 35,
-                                  margin: 10.0,
-                                  showTitles: true,
-                                  getTitles: (double value) {
-                                    switch (value.toInt()) {
-                                      case 0:
-                                        return 'retail';
-                                      case 1:
-                                        return 'grocery';
-                                      case 2:
-                                        return 'park';
-                                      case 3:
-                                        return 'transit';
-                                      case 4:
-                                        return 'workplace';
-                                      default:
-                                        return "";
-                                    }
-                                  },
-                                ),
-                                leftTitles: bar.SideTitles(
-                                  margin: 15,
-                                  showTitles: true,
-                                  getTitles: (value) {
-                                    if (value == 0) {
-                                      return "0";
-                                    } else if (value % 2 == 0) {
-                                      return "${value}%";
-                                    }
-                                    return '';
-                                  },
-                                ),
-                              ),
-                              gridData: bar.FlGridData(
+              Container(
+                width: MediaQuery.of(context).size.width * 0.95,
+                height: 460,
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  boxShadow: [
+                    BoxShadow(
+                      offset: Offset(0, 10),
+                      blurRadius: 30,
+                      color: kShadowColor,
+                    )
+                  ],
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      "Mobility Difference Yesterday",
+                      style: kTitleTextstyle,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      height: 350.0,
+                      width: MediaQuery.of(context).size.width * 0.85,
+                      child: FutureBuilder<List<double>>(
+                        future: _fetchMobilityData(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return new bar.BarChart(
+                              bar.BarChartData(
+                                alignment: bar.BarChartAlignment.spaceAround,
+                                maxY: 130,
+                                barTouchData: bar.BarTouchData(enabled: true),
+                                titlesData: bar.FlTitlesData(
                                   show: true,
-                                  checkToShowHorizontalLine: (value) =>
-                                      value % 2 == 0,
-                                  getDrawingHorizontalLine: (value) =>
-                                      bar.FlLine(
-                                          color: Colors.black12,
-                                          strokeWidth: 1.0,
-                                          dashArray: [5])),
-                              borderData: bar.FlBorderData(show: false),
-                              barGroups: snapshot.data
-                                  .asMap()
-                                  .map((key, value) => MapEntry(
-                                        key,
-                                        bar.BarChartGroupData(x: key, barRods: [
-                                          bar.BarChartRodData(
-                                              y: value, colors: [Colors.blue])
-                                        ]),
-                                      ))
-                                  .values
-                                  .toList(),
-                            ),
-                          );
-                        } else {
-                          return AlertDialog(
-                            content: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                SizedBox(
-                                  width: 100,
-                                  height: 100,
-                                  child: CircularProgressIndicator(),
+                                  bottomTitles: bar.SideTitles(
+                                    rotateAngle: 35,
+                                    margin: 10.0,
+                                    showTitles: true,
+                                    getTitles: (double value) {
+                                      switch (value.toInt()) {
+                                        case 0:
+                                          return 'retail';
+                                        case 1:
+                                          return 'grocery';
+                                        case 2:
+                                          return 'park';
+                                        case 3:
+                                          return 'transit';
+                                        case 4:
+                                          return 'workplace';
+                                        default:
+                                          return "";
+                                      }
+                                    },
+                                  ),
+                                  leftTitles: bar.SideTitles(
+                                    margin: 15,
+                                    showTitles: true,
+                                    getTitles: (value) {
+                                      if (value == 0) {
+                                        return "0";
+                                      } else if (value % 2 == 0) {
+                                        return "${value}%";
+                                      }
+                                      return '';
+                                    },
+                                  ),
                                 ),
-                              ],
-                            ),
-                          );
-                        }
-                      },
+                                gridData: bar.FlGridData(
+                                    show: true,
+                                    checkToShowHorizontalLine: (value) =>
+                                        value % 2 == 0,
+                                    getDrawingHorizontalLine: (value) =>
+                                        bar.FlLine(
+                                            color: Colors.black12,
+                                            strokeWidth: 1.0,
+                                            dashArray: [5])),
+                                borderData: bar.FlBorderData(show: false),
+                                barGroups: snapshot.data
+                                    .asMap()
+                                    .map((key, value) => MapEntry(
+                                          key,
+                                          bar.BarChartGroupData(
+                                              x: key,
+                                              barRods: [
+                                                bar.BarChartRodData(
+                                                    y: value,
+                                                    colors: [Colors.blue])
+                                              ]),
+                                        ))
+                                    .values
+                                    .toList(),
+                              ),
+                            );
+                          } else {
+                            return AlertDialog(
+                              content: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  SizedBox(
+                                    width: 100,
+                                    height: 100,
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
+                        },
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            )
-          ],
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

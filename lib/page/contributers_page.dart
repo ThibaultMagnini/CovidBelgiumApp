@@ -12,222 +12,224 @@ class ContributerPage extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Color.fromARGB(255, 28, 76, 178),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              height: 30,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                InkWell(
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    width: 180,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          offset: Offset(0, 10),
-                          blurRadius: 20,
-                          color: kActiveShadowColor,
-                        ),
-                      ],
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  InkWell(
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      width: 180,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            offset: Offset(0, 10),
+                            blurRadius: 20,
+                            color: kActiveShadowColor,
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            radius: 50,
+                            backgroundImage:
+                                AssetImage("assets/images/jonas.jpg"),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text("Jonas De Boeck"),
+                          Text(
+                            "UCLL",
+                            style: kTitleTextstyle,
+                          )
+                        ],
+                      ),
                     ),
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 50,
-                          backgroundImage:
-                              AssetImage("assets/images/jonas.jpg"),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text("Jonas De Boeck"),
-                        Text(
-                          "UCLL",
-                          style: kTitleTextstyle,
-                        )
-                      ],
+                    onTap: () {
+                      _launchURL(
+                          "https://www.linkedin.com/in/jonas-de-boeck-4291621a2/");
+                    },
+                  ),
+                  InkWell(
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      width: 180,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            offset: Offset(0, 10),
+                            blurRadius: 20,
+                            color: kActiveShadowColor,
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            radius: 50,
+                            backgroundImage:
+                                AssetImage("assets/images/thibault.jpg"),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text("Thibault Magnini"),
+                          Text(
+                            "UCLL",
+                            style: kTitleTextstyle,
+                          )
+                        ],
+                      ),
+                    ),
+                    onTap: () {
+                      _launchURL(
+                          "https://www.linkedin.com/in/thibaultmagnini/");
+                    },
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  InkWell(
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      width: 180,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            offset: Offset(0, 10),
+                            blurRadius: 20,
+                            color: kActiveShadowColor,
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            radius: 50,
+                            backgroundImage:
+                                AssetImage("assets/images/cassio.png"),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text("Prof. Cássio M. Oishi"),
+                          Text(
+                            "UNESP",
+                            style: kTitleTextstyle,
+                          )
+                        ],
+                      ),
+                    ),
+                    onTap: () {
+                      _launchURL(
+                          "https://www.linkedin.com/in/cassio-oishi-334b3676/");
+                    },
+                  ),
+                  InkWell(
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      width: 180,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            offset: Offset(0, 10),
+                            blurRadius: 20,
+                            color: kActiveShadowColor,
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            radius: 50,
+                            backgroundImage:
+                                AssetImage("assets/images/fabio.png"),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text("Fabio Amaral"),
+                          Text(
+                            "UNESP",
+                            style: kTitleTextstyle,
+                          )
+                        ],
+                      ),
+                    ),
+                    onTap: () {},
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  InkWell(
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      width: 180,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            offset: Offset(0, 10),
+                            blurRadius: 20,
+                            color: kActiveShadowColor,
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            radius: 50,
+                            backgroundImage: AssetImage("assets/images/wc.png"),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text("Prof.Wallace Casaca"),
+                          Text(
+                            "UNESP",
+                            style: kTitleTextstyle,
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                  onTap: () {
-                    _launchURL(
-                        "https://www.linkedin.com/in/jonas-de-boeck-4291621a2/");
-                  },
-                ),
-                InkWell(
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    width: 180,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          offset: Offset(0, 10),
-                          blurRadius: 20,
-                          color: kActiveShadowColor,
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 50,
-                          backgroundImage:
-                              AssetImage("assets/images/thibault.jpg"),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text("Thibault Magnini"),
-                        Text(
-                          "UCLL",
-                          style: kTitleTextstyle,
-                        )
-                      ],
-                    ),
-                  ),
-                  onTap: () {
-                    _launchURL("https://www.linkedin.com/in/thibaultmagnini/");
-                  },
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                InkWell(
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    width: 180,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          offset: Offset(0, 10),
-                          blurRadius: 20,
-                          color: kActiveShadowColor,
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 50,
-                          backgroundImage:
-                              AssetImage("assets/images/cassio.png"),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text("Prof. Cássio M. Oishi"),
-                        Text(
-                          "UNESP",
-                          style: kTitleTextstyle,
-                        )
-                      ],
-                    ),
-                  ),
-                  onTap: () {
-                    _launchURL(
-                        "https://www.linkedin.com/in/cassio-oishi-334b3676/");
-                  },
-                ),
-                InkWell(
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    width: 180,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          offset: Offset(0, 10),
-                          blurRadius: 20,
-                          color: kActiveShadowColor,
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 50,
-                          backgroundImage:
-                              AssetImage("assets/images/fabio.png"),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text("Fabio Amaral"),
-                        Text(
-                          "UNESP",
-                          style: kTitleTextstyle,
-                        )
-                      ],
-                    ),
-                  ),
-                  onTap: () {},
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                InkWell(
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    width: 180,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          offset: Offset(0, 10),
-                          blurRadius: 20,
-                          color: kActiveShadowColor,
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 50,
-                          backgroundImage: AssetImage("assets/images/wc.png"),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text("Prof. Wallace Casaca"),
-                        Text(
-                          "UNESP",
-                          style: kTitleTextstyle,
-                        )
-                      ],
-                    ),
-                  ),
-                  onTap: () {
-                    _launchURL(
-                        "https://www.linkedin.com/in/cassio-oishi-334b3676/");
-                  },
-                ),
-              ],
-            )
-          ],
+                ],
+              )
+            ],
+          ),
         ),
       );
 

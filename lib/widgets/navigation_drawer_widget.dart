@@ -12,7 +12,7 @@ import 'package:intl/intl.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 10);
-  final title = "CoronaPredBE";
+  final title = "Pandemic Stats BE";
   final DateFormat formatter = DateFormat('yyyy-MM-dd');
 
   @override
@@ -109,13 +109,7 @@ class NavigationDrawerWidget extends StatelessWidget {
           )),
           child: Row(
             children: [
-              CircleAvatar(
-                radius: 30,
-                backgroundImage: AssetImage("assets/images/wear_mask.png"),
-              ),
-              SizedBox(
-                width: 15,
-              ),
+              SizedBox(width: 10),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
