@@ -4,6 +4,7 @@ import 'package:covid_app/page/active_infections_page.dart';
 import 'package:covid_app/page/clustering_page.dart';
 import 'package:covid_app/page/contributers_page.dart';
 import 'package:covid_app/page/mobility_difference_page.dart';
+import 'package:covid_app/page/papers_page.dart';
 import 'package:covid_app/page/reproduction_number_page.dart';
 import 'package:covid_app/page/total_recoveries_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -72,6 +73,11 @@ class NavigationDrawerWidget extends StatelessWidget {
               text: 'Contributors',
               icon: Icons.people,
               onClicked: () => selectedItem(context, 6),
+            ),
+            buildMenuItem(
+              text: 'Papers',
+              icon: Icons.auto_stories_rounded,
+              onClicked: () => selectedItem(context, 4),
             ),
           ],
         ),
@@ -156,6 +162,13 @@ class NavigationDrawerWidget extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => ClusteringPage(),
+          ),
+        );
+        break;
+      case 4:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => PapersPage(),
           ),
         );
         break;

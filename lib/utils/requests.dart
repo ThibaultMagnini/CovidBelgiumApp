@@ -6,7 +6,6 @@ Future<String> fetchLatestInfection() async {
       await http.get(Uri.parse("http://139.162.248.210:8000/cases/belgium"));
   if (response.statusCode == 200) {
     final responseJson = jsonDecode(response.body);
-    print(responseJson[responseJson.length - 1]["NEW_CASES"]);
     return responseJson[responseJson.length - 3]["NEW_CASES"];
   } else {
     return "NA";
