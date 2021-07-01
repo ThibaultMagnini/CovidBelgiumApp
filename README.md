@@ -1,4 +1,4 @@
-# Covid19 Stats BE app (Soon to release on Play Store)
+# Pandemic Stats BE app 
 
 Show and visualize all data regarding the Covid-19 pandemic: 
  * Infections and our forecast
